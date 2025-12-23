@@ -7,11 +7,12 @@ let when = ['before the class', 'when I was sleeping', 'while I was exercising',
 
 /* Elementos de HTML */
 
-let excuse = document.getElementById('excuse');
+let excuse = document.getElementById('excuse'); /* Elemento HTML para la excusa */
+let ExcuseButton = document.getElementById('excuseButton'); /* Boton para generar la excusa */ 
 
 /* Generador de excusas */
 
-const excuseGenerator = function() {
+const excuseGenerator = function(element) {
     let whoIndex = Math.floor(Math.random() * who.length);
     let actionIndex = Math.floor(Math.random() * action.length);
     let whatIndex = Math.floor(Math.random()* what.length);
@@ -19,9 +20,16 @@ const excuseGenerator = function() {
 
     let excuse = `${who[whoIndex]} ${action[actionIndex]} ${what[whatIndex]} ${when[whenIndex]}`;
 
-    return excuse
+    return element.innerHTML = excuse;
 };
 
-excuse.innerHTML = excuseGenerator();
+/* Llamar a la funcion */
+
+onload = excuseGenerator(excuse);
 
 
+/* Llamando la funcion con el boton */
+
+ExcuseButton.addEventListener('click', function() {
+    excuseGenerator(excuse);
+});
